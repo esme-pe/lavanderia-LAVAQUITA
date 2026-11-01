@@ -1,3 +1,3 @@
 "# lavanderia-LAVAQUITA" 
 
-los mas pros
+Progamacion de los menus.
