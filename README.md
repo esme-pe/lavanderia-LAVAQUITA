@@ -1,3 +1,3 @@
 "# lavanderia-LAVAQUITA" 
 
-Progamacon de los menus.
+Progamacion de los menus.

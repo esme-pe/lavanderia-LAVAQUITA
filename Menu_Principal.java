@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Menu_Principal {
     static Scanner sc = new Scanner(System.in);
 
-    //Espacio para funsiones (minimo 5)
+    //Espacio para funciones (minimo 5)
 
 
 
