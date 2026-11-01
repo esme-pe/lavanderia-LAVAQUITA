@@ -1,15 +1,10 @@
 import java.util.Scanner;
 
-<<<<<<< HEAD
 public class Menu_Principal{
-=======
-public class Menu_Principal {
->>>>>>> 9258d00a3214944e9eb6147068060c03efc974af
     static Scanner sc = new Scanner(System.in);
 
     //Espacio para funciones (minimo 5)
 
-<<<<<<< HEAD
     public static void main(String args[]){
         int opMainMenu;
         int opContinuar;
@@ -59,38 +54,6 @@ public class Menu_Principal {
                             }
                         } while (!metodopago.equalsIgnoreCase("Efectivo") && !metodopago.equalsIgnoreCase("Tarjeta")); 
 
-=======
-
-
-
-
-    public static void main(String[] args){
-        //aqui se declararán las variables de los datos
-        int opMainMenu;
-        int opMetodoPago;
-        int opContinuar;
-        int opServicio;
-        do{
-            System.out.println("LAVANDERIA LAVAQUITA");
-            System.out.println("Seleccione una opcion: ");
-            System.out.println("1• Registrarce");
-            System.out.println("2• Sercicios");
-            System.out.println("3• Reportes");
-            System.out.println("4• Salir");
-            opMainMenu = sc.nextInt();
-            switch (opMainMenu){
-                case 1: 
-                        System.out.println("REGISTRO");
-                        System.out.println("Nombre: ");
-                        //Pedir variable con scanner y validarla
-                        System.out.println("Num. de celular: ");
-                        //Pedir variable con scanner y validarla
-                        System.out.println("Metodo de pago: ");
-                        System.out.println("1• Efectivo");
-                        System.out.println("2• Tarjeta");
-                        opMetodoPago = sc.nextInt();
-                        //Pedir variable con scanner y validarla
->>>>>>> 9258d00a3214944e9eb6147068060c03efc974af
                         do{
                             System.out.println("1• Continuar");
                             System.out.println("2• Volver");
@@ -103,7 +66,6 @@ public class Menu_Principal {
                             break;
                         }
                         
-<<<<<<< HEAD
                         break; 
                         
                 case 2:
@@ -137,18 +99,6 @@ public class Menu_Principal {
 
                         //En este espacio se realizaran los calculos necesarios para el pedido (Subtotal, descuentos, IVA, total, etc)
 
-=======
-                case 2:
-                        System.out.println("SERVICIOS");
-                        System.out.println("Peso de la ropa: ");
-                        //Pedir variable con scanner y validarla
-                        System.out.println("Tipo de servicio: ");
-                        System.out.println("1• Lavado básico");
-                        System.out.println("2• Lavado pesado");
-                        opServicio = sc.nextInt();
-                        //Pedir variable con scanner y validarla
-                        //En este espacio se realizaran los calculos necesarios para el pedido (Subtotal, descuentos, IVA, total, etc)
->>>>>>> 9258d00a3214944e9eb6147068060c03efc974af
                         do{
                             System.out.println("1• Continuar");
                             System.out.println("2• Volver");
@@ -160,7 +110,6 @@ public class Menu_Principal {
                         if(opContinuar == 2){
                             break;
                         }
-<<<<<<< HEAD
                         
                         break;
 
@@ -172,25 +121,11 @@ public class Menu_Principal {
                         System.out.println("Tipo de servicio: " + tiposervicio);
                         System.out.println("Precio por kg: ");
                         System.out.println("Método de pago: " + metodopago);
-=======
-                case 3:
-                        //Falta asignar las variables que se mostrarán
-                        System.out.println("TICKET");
-                        System.out.println("Nombre: ");
-                        System.out.println("Num. celular: ");
-                        System.out.println("Peso de ropa: ");
-                        System.out.println("Tipo de servicio: ");
-                        System.out.println("Precio por kg: ");
-                        System.out.println("Método de pago: ");
->>>>>>> 9258d00a3214944e9eb6147068060c03efc974af
                         System.out.println("Subtotal: ");
                         System.out.println("Descuento: ");
                         System.out.println("IVA: ");
                         System.out.println("Total: ");
-<<<<<<< HEAD
                         
-=======
->>>>>>> 9258d00a3214944e9eb6147068060c03efc974af
                         do{
                             System.out.println("1• Volver");
                             opContinuar = sc.nextInt();
@@ -205,8 +140,4 @@ public class Menu_Principal {
         }while(opMainMenu != 4);
         sc.close();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 9258d00a3214944e9eb6147068060c03efc974af
