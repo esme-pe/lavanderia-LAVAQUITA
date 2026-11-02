@@ -2,8 +2,44 @@ import java.util.Scanner;
 
 public class Menu_Principal{
     static Scanner sc = new Scanner(System.in);
-
+        static final double PRECIO_BASICO = 20.0;
+        static final double PRECIO_PESADO = 35.0;
+        static final double PORCENTAJE = 0.20; // 15% de descuento
+        static final double IVA_PORCENTAJE = 0.16; //IVA
+        static final double PESO_MINIMO = 5.0; //Peso minimo para aplicar descuento
     //Espacio para funciones (minimo 5)
+    public static double obtenerPrecioPorKg(String tiposervicio){
+        double precio = 0;
+        if(tiposervicio.equalsIgnoreCase("Basico") || tiposervicio.equalsIgnoreCase("Básico")){
+            precio = PRECIO_BASICO;
+        } else if(tiposervicio.equalsIgnoreCase("Pesado")){
+            precio = PRECIO_PESADO;
+        }
+        return precio;
+    }
+//calcula el subtotal multiplicando el peso por el precio por kg
+    public static double calcularSubtotal(double peso, double precioPorKg){
+        double subtotal = peso * precioPorKg;
+        return subtotal;
+    }
+
+    public static double calcularDescuento(double subtotal, double peso){
+        double descuento = 0;
+        if(peso >= PESO_MINIMO){
+            descuento = subtotal * PORCENTAJE;
+        }
+        return descuento;
+    }
+
+    public static double calcularIVA(double subtotal, double descuento){
+        double iva = subtotal * IVA_PORCENTAJE;
+        return iva;
+    }
+
+    public static double calcularTotal(double subtotal, double descuento, double iva){
+        double total = subtotal - descuento + iva;
+        return total;
+    }
 
     public static void main(String args[]){
         int opMainMenu;
@@ -14,9 +50,17 @@ public class Menu_Principal{
         double peso = 0;
         String tiposervicio = "";
         String metodopago = "";
+
+        double precioPorKg = 0;
+        double subtotal = 0;
+        double descuento = 0;
+        double iva = 0; 
+        double total = 0;
         
         do{
+            System.out.println("================================");
             System.out.println("LAVANDERIA LAVAQUITA");
+            System.out.println("================================");
             System.out.println("Seleccione una opcion: ");
             System.out.println("1• Registrarse");
             System.out.println("2• Servicios");
@@ -28,7 +72,9 @@ public class Menu_Principal{
 
             switch (opMainMenu){
                 case 1: 
+                        System.out.println("================================");
                         System.out.println("REGISTRO");
+                        System.out.println("================================");
                         
                         do{
                            System.out.println(" Nombre del cliente ");
@@ -55,7 +101,7 @@ public class Menu_Principal{
                         } while (!metodopago.equalsIgnoreCase("Efectivo") && !metodopago.equalsIgnoreCase("Tarjeta")); 
 
                         do{
-                            System.out.println("1• Continuar");
+                            System.out.print("1• Continuar     ");
                             System.out.println("2• Volver");
                             opContinuar = sc.nextInt();
                             if(opContinuar > 2 || opContinuar == 0){
@@ -69,7 +115,9 @@ public class Menu_Principal{
                         break; 
                         
                 case 2:
+                        System.out.println("================================");
                         System.out.println("SERVICIOS");
+                        System.out.println("================================");
                         
                         do{
                             System.out.println(" Tipo de servicio (Basico / Pesado) ");
@@ -95,12 +143,14 @@ public class Menu_Principal{
                         } while (peso <= 0);
                         
                         sc.nextLine();
-                        
-
-                        //En este espacio se realizaran los calculos necesarios para el pedido (Subtotal, descuentos, IVA, total, etc)
-
+                         //En este espacio se realizaran los calculos necesarios para el pedido (Subtotal, descuentos, IVA, total, etc)
+                        precioPorKg = obtenerPrecioPorKg(tiposervicio);
+                        subtotal = calcularSubtotal(peso, precioPorKg);
+                        iva = calcularIVA(subtotal, descuento);
+                        descuento = calcularDescuento(subtotal, peso);
+                        total = calcularTotal(subtotal, descuento, iva);
                         do{
-                            System.out.println("1• Continuar");
+                            System.out.print("1• Continuar     ");
                             System.out.println("2• Volver");
                             opContinuar = sc.nextInt();
                             if(opContinuar > 2 || opContinuar == 0){
@@ -114,17 +164,20 @@ public class Menu_Principal{
                         break;
 
                 case 3:
+                        System.out.println("================================");
                         System.out.println("TICKET");
+                        System.out.println("================================");
                         System.out.println("Nombre: " + nombre);
                         System.out.println("Num. celular: " + numcel);
-                        System.out.println("Peso de ropa: " + peso);
+                        System.out.println("Peso de ropa: " + peso + "kg");
                         System.out.println("Tipo de servicio: " + tiposervicio);
-                        System.out.println("Precio por kg: ");
+                        System.out.println("Precio por kg: $" + precioPorKg);
                         System.out.println("Método de pago: " + metodopago);
-                        System.out.println("Subtotal: ");
-                        System.out.println("Descuento: ");
-                        System.out.println("IVA: ");
-                        System.out.println("Total: ");
+                        // mi parte de calculos 
+                        System.out.println("Subtotal: $" + subtotal);
+                        System.out.println("Descuento: -$" + descuento);
+                        System.out.println("IVA: +$" + iva);
+                        System.out.println("Total: $" + total);
                         
                         do{
                             System.out.println("1• Volver");
@@ -134,7 +187,9 @@ public class Menu_Principal{
                             }
                         }while(opContinuar != 1);
                         break;
-                case 4: System.out.println("¡Vuelva pronto!");break;
+                case 4: 
+                        System.out.println("--------------------------------");
+                        System.out.println("¡Vuelva pronto!");break;
                 default: System.out.println("Opcion erronea");
             }
         }while(opMainMenu != 4);
