@@ -31,7 +31,7 @@ public class Menu_Principal{
         return descuento;
     }
 
-    public static double calcularIVA(double subtotal, double descuento){
+    public static double calcularIVA(double subtotal){
         double iva = subtotal * IVA_PORCENTAJE;
         return iva;
     }
