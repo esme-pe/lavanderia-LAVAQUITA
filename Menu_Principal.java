@@ -4,7 +4,7 @@ public class Menu_Principal{
     static Scanner sc = new Scanner(System.in);
         static final double PRECIO_BASICO = 20.0;
         static final double PRECIO_PESADO = 35.0;
-        static final double PORCENTAJE = 0.20; // 15% de descuento
+        static final double PORCENTAJE = 0.20; // 20% de descuento
         static final double IVA_PORCENTAJE = 0.16; //IVA
         static final double PESO_MINIMO = 5.0; //Peso minimo para aplicar descuento
     //Espacio para funciones (minimo 5)
@@ -146,7 +146,7 @@ public class Menu_Principal{
                          //En este espacio se realizaran los calculos necesarios para el pedido (Subtotal, descuentos, IVA, total, etc)
                         precioPorKg = obtenerPrecioPorKg(tiposervicio);
                         subtotal = calcularSubtotal(peso, precioPorKg);
-                        iva = calcularIVA(subtotal, descuento);
+                        iva = calcularIVA(subtotal);
                         descuento = calcularDescuento(subtotal, peso);
                         total = calcularTotal(subtotal, descuento, iva);
                         do{
