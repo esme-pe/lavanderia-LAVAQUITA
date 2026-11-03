@@ -56,6 +56,11 @@ public class Menu_Principal{
         double descuento = 0;
         double iva = 0; 
         double total = 0;
+
+        boolean registrado = false;
+        boolean servicioActivo = false;
+
+        int contadorServicios = 0;
         
         do{
             System.out.println("================================");
@@ -100,6 +105,8 @@ public class Menu_Principal{
                             }
                         } while (!metodopago.equalsIgnoreCase("Efectivo") && !metodopago.equalsIgnoreCase("Tarjeta")); 
 
+                        registrado = true;
+
                         do{
                             System.out.print("1• Continuar     ");
                             System.out.println("2• Volver");
@@ -112,83 +119,129 @@ public class Menu_Principal{
                             break;
                         }
                         
-                        break; 
+                        
                         
                 case 2:
-                        System.out.println("================================");
-                        System.out.println("SERVICIOS");
-                        System.out.println("================================");
+                        if(registrado == true){
+                            System.out.println("================================");
+                            System.out.println("SERVICIOS");
+                            System.out.println("================================");
                         
-                        do{
-                            System.out.println(" Tipo de servicio (Basico / Pesado) ");
-                            tiposervicio = sc.nextLine();
-                            if(!tiposervicio.equalsIgnoreCase("Basico") && !tiposervicio.equalsIgnoreCase("Básico") && !tiposervicio.equalsIgnoreCase("Pesado")){
-                                System.out.println("Servicio no reconocido, vuelve a intentarlo.");
-                            }
-                        } while (!tiposervicio.equalsIgnoreCase("Basico") && !tiposervicio.equalsIgnoreCase("Básico") && !tiposervicio.equalsIgnoreCase("Pesado") );
-                        
-                        
-                        do{ 
-                            System.out.println(" Peso de la ropa (Kg) ");
-                            if (sc.hasNextDouble()) {
-                                peso = sc.nextDouble();   
-                                if (peso <= 0) {
-                                    System.out.println("El peso no puede ser cero o negativo, vuelve a intentarlo.");
+                            do{
+                                System.out.println(" Tipo de servicio (Basico / Pesado) ");
+                                tiposervicio = sc.nextLine();
+                                if(!tiposervicio.equalsIgnoreCase("Basico") && !tiposervicio.equalsIgnoreCase("Básico") && !tiposervicio.equalsIgnoreCase("Pesado")){
+                                    System.out.println("Servicio no reconocido, vuelve a intentarlo.");
                                 }
-                            } else {
-                                System.out.println("No puedes ingresar letras, vuelve a intentarlo usando números.");
-                                sc.nextLine(); 
-                                peso = 0;
-                            }
-                        } while (peso <= 0);
+                            } while (!tiposervicio.equalsIgnoreCase("Basico") && !tiposervicio.equalsIgnoreCase("Básico") && !tiposervicio.equalsIgnoreCase("Pesado") );
                         
-                        sc.nextLine();
-                         //En este espacio se realizaran los calculos necesarios para el pedido (Subtotal, descuentos, IVA, total, etc)
-                        precioPorKg = obtenerPrecioPorKg(tiposervicio);
-                        subtotal = calcularSubtotal(peso, precioPorKg);
-                        iva = calcularIVA(subtotal);
-                        descuento = calcularDescuento(subtotal, peso);
-                        total = calcularTotal(subtotal, descuento, iva);
-                        do{
-                            System.out.print("1• Continuar     ");
-                            System.out.println("2• Volver");
-                            opContinuar = sc.nextInt();
-                            if(opContinuar > 2 || opContinuar == 0){
-                                System.out.println("Opcion erronea");
+                        
+                            do{ 
+                                System.out.println(" Peso de la ropa (Kg) ");
+                                if (sc.hasNextDouble()) {
+                                    peso = sc.nextDouble();   
+                                    if (peso <= 0) {
+                                        System.out.println("El peso no puede ser cero o negativo, vuelve a intentarlo.");
+                                    }
+                                } else {
+                                    System.out.println("No puedes ingresar letras, vuelve a intentarlo usando números.");
+                                    sc.nextLine(); 
+                                    peso = 0;
+                                }
+                            } while (peso <= 0);
+                        
+                            sc.nextLine();
+                             //En este espacio se realizaran los calculos necesarios para el pedido (Subtotal, descuentos, IVA, total, etc)
+                            precioPorKg = obtenerPrecioPorKg(tiposervicio);
+                            subtotal = calcularSubtotal(peso, precioPorKg);
+                            iva = calcularIVA(subtotal);
+                            descuento = calcularDescuento(subtotal, peso);
+                            total = calcularTotal(subtotal, descuento, iva);
+
+                            servicioActivo = true;
+
+                            do{
+                                System.out.print("1• Continuar     ");
+                                System.out.println("2• Volver");
+                                opContinuar = sc.nextInt();
+                                if(opContinuar > 2 || opContinuar == 0){
+                                    System.out.println("Opcion erronea");
+                                }
+                            }while(opContinuar > 2 || opContinuar == 0);
+                            if(opContinuar == 2){
+                                break;
                             }
-                        }while(opContinuar > 2 || opContinuar == 0);
-                        if(opContinuar == 2){
+                        }else{
+                            System.out.println("No estas registrado");
+                            do{
+                                System.out.println("1• Volver");
+                                opContinuar = sc.nextInt();
+                                    if(opContinuar != 1){
+                                        System.out.println("Opcion erronea");
+                                }
+                            }while(opContinuar != 1);
                             break;
                         }
                         
-                        break;
 
                 case 3:
-                        System.out.println("================================");
-                        System.out.println("TICKET");
-                        System.out.println("================================");
-                        System.out.println("Nombre: " + nombre);
-                        System.out.println("Num. celular: " + numcel);
-                        System.out.println("Peso de ropa: " + peso + "kg");
-                        System.out.println("Tipo de servicio: " + tiposervicio);
-                        System.out.println("Precio por kg: $" + precioPorKg);
-                        System.out.println("Método de pago: " + metodopago);
-                        // mi parte de calculos 
-                        System.out.println("Subtotal: $" + subtotal);
-                        System.out.println("Descuento: -$" + descuento);
-                        System.out.println("IVA: +$" + iva);
-                        System.out.println("Total: $" + total);
-                        
-                        do{
-                            System.out.println("1• Volver");
-                            opContinuar = sc.nextInt();
-                            if(opContinuar != 1){
-                                System.out.println("Opcion erronea");
-                            }
-                        }while(opContinuar != 1);
-                        break;
+                        if(servicioActivo == true){
+                            System.out.println("================================");
+                            System.out.println("TICKET");
+                            System.out.println("================================");
+                            System.out.println("Nombre: " + nombre);
+                            System.out.println("Num. celular: " + numcel);
+                            System.out.println("Peso de ropa: " + peso + "kg");
+                            System.out.println("Tipo de servicio: " + tiposervicio);
+                            System.out.println("Precio por kg: $" + precioPorKg);
+                            System.out.println("Método de pago: " + metodopago);
+                            // mi parte de calculos 
+                            System.out.println("Subtotal: $" + subtotal);
+                            System.out.println("Descuento: -$" + descuento);
+                            System.out.println("IVA: +$" + iva);
+                            System.out.println("Total: $" + total);
+
+                            nombre = "";
+                            numcel = "";
+                            peso = 0;
+                            tiposervicio = "";
+                            metodopago = "";
+
+                            precioPorKg = 0;
+                            subtotal = 0;
+                            descuento = 0;
+                            iva = 0; 
+                            total = 0;
+
+                            registrado = false;
+                            servicioActivo = false;
+
+                            contadorServicios ++;
+                            
+                            do{
+                                System.out.println("1• Volver");
+                                opContinuar = sc.nextInt();
+                                if(opContinuar != 1){
+                                    System.out.println("Opcion erronea");
+                                }
+                            }while(opContinuar != 1);
+                            break;
+                        }else{
+                            System.out.println("No tienes un servicio activo");
+                            do{
+                                System.out.println("1• Volver");
+                                opContinuar = sc.nextInt();
+                                if(opContinuar != 1){
+                                    System.out.println("Opcion erronea");
+                                }
+                            }while(opContinuar != 1);
+                            break;
+                        }
+
+
                 case 4: 
                         System.out.println("--------------------------------");
+                        System.out.println("Servicion realizados: " + contadorServicios);
                         System.out.println("¡Vuelva pronto!");break;
                 default: System.out.println("Opcion erronea");
             }
