@@ -111,10 +111,10 @@ public class Menu_Principal{
                             System.out.print("1• Continuar     ");
                             System.out.println("2• Volver");
                             opContinuar = sc.nextInt();
-                            if(opContinuar > 2 || opContinuar == 0){
+                            if(opContinuar > 2 || opContinuar <= 0){
                                 System.out.println("Opcion erronea");
                             }
-                        }while(opContinuar > 2 || opContinuar == 0);
+                        }while(opContinuar > 2 || opContinuar <= 0);
                         if(opContinuar == 2){
                             break;
                         }
@@ -164,10 +164,10 @@ public class Menu_Principal{
                                 System.out.print("1• Continuar     ");
                                 System.out.println("2• Volver");
                                 opContinuar = sc.nextInt();
-                                if(opContinuar > 2 || opContinuar == 0){
+                                if(opContinuar > 2 || opContinuar <= 0 ){
                                     System.out.println("Opcion erronea");
                                 }
-                            }while(opContinuar > 2 || opContinuar == 0);
+                            }while(opContinuar > 2 || opContinuar <= 0);
                             if(opContinuar == 2){
                                 break;
                             }
@@ -241,7 +241,7 @@ public class Menu_Principal{
 
                 case 4: 
                         System.out.println("--------------------------------");
-                        System.out.println("Servicion realizados: " + contadorServicios);
+                        System.out.println("Servicios realizados: " + contadorServicios);
                         System.out.println("¡Vuelva pronto!");break;
                 default: System.out.println("Opcion erronea");
             }
